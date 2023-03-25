@@ -1,0 +1,48 @@
+COMMANDS:
+    docker ps -a : ver containers
+    docker pull [image] : baixa a imagem
+    docker run [image] : baixa e executa imagem
+    docker run [image] [command] : baixa e executa imagem com um determinado comando comando 
+    docker run -it [image] [terminalCommand] : baixa e executa imagem em modo interativo
+    docker run -d [image] - baixa e executa imagem e mantem em backgroud container (container fica ativo)
+    docker run -d -P [image]: baixa e executa imagem e mantem em backgroud container fazendo comunicação entre portas da host/container aleatória
+    docker run -d -p [hostPort:containerPort] [image] : baixa e executa imagem e mantem em backgroud container setando comunicação entre portas da host/container
+    docker run -it -v [fullPahtHost:pathContainer] [image] [terminalCommand] : armazena dados com volume
+        -  docker run -it -v meu-volume:/app ubuntu bash
+    docker run -it -mount [fullPahtHost:pathContainer] [image] [terminalCommand] : persistencia de dados com mount
+        - docker run -it --mount type=bind,src=C:/Users/filipe.rocha/Desktop/volume-docker,dst=/app ubuntu bash
+        - docker run -it --mount src=meu-volume,dst=/app ubuntu bash
+    docker run -it --tmpfs=[pathContainer] [image] [terminalCommand] : persiste dados temporarios nos volumes
+        - docker run -it --tmpfs=/app ubuntu bash
+        - docker run -it --mount type=tmpfs,dst=/app ubuntu bash
+    docker run -it --name [containerName] --network [networkName] [image] [terminalCommand] : utilizando rede interna
+        - docker run -it --name ubuntu1 --network minha-bridge ubuntu bash
+    docker port [containerId] : mostra portas do container
+    dokcer exec -it [containerId] [terminalCommand] : executar comando em modo interativo
+    docker stop [containerId] : interrompe a execução do container
+    docker star [containerId] : inicia do container
+    docker pause [containerId] : pausa container mas mantem os processos internos
+    docker unpause [containerId] : inicia conteainer após a pausa
+    docker rm [containerId] : remover container
+    docker images : lista imagens
+
+VOLUMES:
+    docker volume create [volumeName]
+
+NETWORK :
+    docker network create --driver bridge [networkName]
+    --network host (não funciona no windows)
+
+
+PARAMS:
+    -d : rodar em backgroud
+    -p : setar as portas
+    -P : portas aleatórias
+    -it : modo interativo
+    -a : listagem completa
+    -v : guardar volumes no host
+
+
+
+COMMANDS_INTERNAL:
+    - sleep 1d : deixa ativo por 1 dia
